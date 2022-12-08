@@ -20,24 +20,37 @@ class Dice:
             self.counter += 1
         total = sum(self.num_list)
         print("this is the total: ", total)
+        return total
+
+
+total_list = []
+
+
+def ask():
+    side = int(input("How many sides? "))
+    amt = int(input("How many dice? "))
+    total_list.append(Dice(side, amt).roll())
+    print(total_list)
+
+
+def say_total(lst):
+    total1 = sum(lst)
+    print("This is the total of all dice:", total1)
+
+
+def another_dice():
+    new_yes_no = str(input("Do you want another type of dice? y/n ")).lower()
+    if new_yes_no == "y":
+        ask()
+    elif new_yes_no == "n":
+        say_total(total_list)
+    else:
+        pass
 
 
 is_running = True
 
 while is_running:
-    side = int(input("How many sides? "))
-    amt = int(input("How many dice? "))
-    dice1 = Dice(side, amt)
-    dice1.roll()
-    yes_no = True
-    while yes_no:
-        leave = str(input("Exit? y/n ")).lower()
-        if leave == "y":
-            is_running = False
-            break
-        elif leave == "n":
-            yes_no = False
-            break
-        else:
-            print("invalid!!!!")
+    ask()
+    another_dice()
 
